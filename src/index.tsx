@@ -1,7 +1,8 @@
 /* @refresh reload */
-import { render } from "solid-js/web";
+import { render } from 'solid-js/web'
 
-import "./style.css";
-import App from "./App";
+import App from './App'
+import './global.css'
+import './style.css'
 
-render(() => <App />, document.getElementById("root") as HTMLElement);
+render(() => <App />, document.getElementById('root') as HTMLElement)
