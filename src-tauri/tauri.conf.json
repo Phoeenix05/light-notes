@@ -11,6 +11,7 @@
     "version": "0.0.0"
   },
   "tauri": {
+    "macOSPrivateApi": true,
     "allowlist": {
       "fs": {
         "readDir": true,
@@ -68,7 +69,8 @@
         "height": 600,
         "resizable": true,
         "title": "tauri-editor",
-        "width": 800
+        "width": 800,
+        "transparent": true
       }
     ]
   }
