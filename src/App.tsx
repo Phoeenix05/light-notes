@@ -1,7 +1,7 @@
-import { createSignal } from "solid-js";
-import logo from "./assets/logo.svg";
 import { invoke } from "@tauri-apps/api/tauri";
+import { createSignal } from "solid-js";
 import "./App.css";
+import logo from "./assets/logo.svg";
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
