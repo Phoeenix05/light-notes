@@ -12,12 +12,14 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false,
+      "fs": {
+        "readDir": true,
+        "readFile": true
+      },
       "dialog": {
         "all": true
       },
       "shell": {
-        "all": false,
         "open": true
       }
     },
