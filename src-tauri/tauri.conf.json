@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "tauri-editor",
+    "productName": "light-notes",
     "version": "0.0.0"
   },
   "tauri": {
@@ -68,7 +68,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "tauri-editor",
+        "title": "Light Notes",
         "width": 800,
         "transparent": true
       }
