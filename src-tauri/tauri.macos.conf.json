@@ -1,0 +1,22 @@
+{
+  "tauri": {
+    "macOSPrivateApi": true,
+    "allowlist": {
+      "window": {
+        "startDragging": true
+      }
+    },
+    "windows": [
+      {
+        "width": 1280,
+        "height": 720,
+        "resizable": true,
+        "title": "Light Notes",
+        
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "transparent": true
+      }
+    ]
+  }
+}

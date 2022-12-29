@@ -11,7 +11,6 @@
     "version": "0.0.0"
   },
   "tauri": {
-    "macOSPrivateApi": true,
     "allowlist": {
       "fs": {
         "readDir": true,
@@ -62,16 +61,6 @@
     },
     "updater": {
       "active": false
-    },
-    "windows": [
-      {
-        "fullscreen": false,
-        "height": 600,
-        "resizable": true,
-        "title": "Light Notes",
-        "width": 800,
-        "transparent": true
-      }
-    ]
+    }
   }
 }

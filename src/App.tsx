@@ -27,7 +27,7 @@ function App() {
 	})
 	
 	return (
-		<div>
+		<div data-tauri-drag-region id='window' class='w-screen h-screen bg-neutral-800/80'>
 			<h1>{ path() }</h1>
 		</div>
 	)
