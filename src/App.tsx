@@ -1,17 +1,21 @@
 import { open } from '@tauri-apps/api/dialog'
+import { readDir } from '@tauri-apps/api/fs'
 import { createEffect, createResource } from 'solid-js'
+import FileItem from './components/FileItem'
 
-const getPath = async () => {
+const getFiles = async () => {
 	const path = await open({
 		directory: true,
 		multiple: false
 	})
+	
+	const files = await readDir(String(path), { recursive: true })
 
-	return path
+	return files
 }
 
 function App() {
-	const [path, { refetch }] = createResource(getPath)
+	const [files, { refetch }] = createResource(getFiles)
 
 	createEffect(() => {
 		const onKeyDown = (e: KeyboardEvent) => {
@@ -27,8 +31,8 @@ function App() {
 	})
 	
 	return (
-		<div data-tauri-drag-region id='window' class='w-screen h-screen bg-neutral-800/80'>
-			<h1>{ path() }</h1>
+		<div data-tauri-drag-region class='w-screen h-screen bg-neutral-900'>
+			{ files()?.map((file) => <FileItem name={file.name} path={file.path} />) }
 		</div>
 	)
 }

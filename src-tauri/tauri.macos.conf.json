@@ -13,9 +13,8 @@
         "resizable": true,
         "title": "Light Notes",
         
-        "titleBarStyle": "Overlay",
-        "hiddenTitle": true,
-        "transparent": true
+        "titleBarStyle": "Visible",
+        "hiddenTitle": true
       }
     ]
   }
