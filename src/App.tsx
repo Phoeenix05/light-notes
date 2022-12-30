@@ -1,6 +1,6 @@
 import { open } from '@tauri-apps/api/dialog'
-import { readDir } from '@tauri-apps/api/fs'
-import { createEffect, createResource } from 'solid-js'
+import { readDir, readTextFile } from '@tauri-apps/api/fs'
+import { createEffect, createResource, createSignal } from 'solid-js'
 import FileItem from './components/FileItem'
 
 const getFiles = async () => {
@@ -9,13 +9,14 @@ const getFiles = async () => {
 		multiple: false
 	})
 	
-	const files = await readDir(String(path), { recursive: true })
+	const files = await readDir(String(path), { recursive: false })
 
 	return files
 }
 
 function App() {
 	const [files, { refetch }] = createResource(getFiles)
+	const [content, setContent] = createSignal('')
 
 	createEffect(() => {
 		const onKeyDown = (e: KeyboardEvent) => {
@@ -31,8 +32,25 @@ function App() {
 	})
 	
 	return (
-		<div data-tauri-drag-region class='w-screen h-screen bg-neutral-900'>
-			{ files()?.map((file) => <FileItem name={file.name} path={file.path} />) }
+		<div data-tauri-drag-region class='flex w-screen h-screen bg-neutral-900'>
+			<section class='flex flex-col min-w-[12rem] h-screen'>
+				{ 
+					files()?.map((file) => 
+						<FileItem onClick={
+							async () => {
+								const text = await readTextFile(file.path)
+								setContent(text)
+							}} 
+							name={file.name} 
+							path={file.path} 
+						/>) 
+				}
+			</section>
+			<section class='flex-grow overflow-x-auto'>
+				<pre class='text-white'>
+					{ content() }
+				</pre>
+			</section>
 		</div>
 	)
 }
