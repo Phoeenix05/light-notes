@@ -1,5 +1,5 @@
 import { open } from '@tauri-apps/api/dialog'
-import { readDir, readTextFile } from '@tauri-apps/api/fs'
+import { readDir, readTextFile, writeTextFile } from '@tauri-apps/api/fs'
 import { createEffect, createResource, createSignal } from 'solid-js'
 import FileItem from './components/FileItem'
 
@@ -16,11 +16,12 @@ const getFiles = async () => {
 
 function App() {
 	const [files, { refetch }] = createResource(getFiles)
+	// const [activeFile, setActiveFile] = createSignal('')
 	const [content, setContent] = createSignal('')
 
 	createEffect(() => {
 		const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'o' && (e.metaKey || e.ctrlKey)) {
+      if (e.key === 'o' && e.metaKey) {
 				refetch()
 			}
     }
@@ -34,22 +35,23 @@ function App() {
 	return (
 		<div data-tauri-drag-region class='flex w-screen h-screen bg-neutral-900'>
 			<section class='flex flex-col min-w-[12rem] h-screen'>
-				{ 
+				{
 					files()?.map((file) => 
 						<FileItem onClick={
 							async () => {
 								const text = await readTextFile(file.path)
+								// setActiveFile(file.path)
 								setContent(text)
-							}} 
+							}}
 							name={file.name} 
 							path={file.path} 
 						/>) 
 				}
 			</section>
-			<section class='flex-grow overflow-x-auto'>
-				<pre class='text-white'>
+			<section class='flex-grow'>
+				<textarea class='w-full h-full'>
 					{ content() }
-				</pre>
+				</textarea>
 			</section>
 		</div>
 	)
