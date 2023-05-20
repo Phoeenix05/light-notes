@@ -1,5 +1,5 @@
 import { open } from '@tauri-apps/api/dialog'
-import { readDir, readTextFile, writeTextFile } from '@tauri-apps/api/fs'
+import { readDir, readTextFile } from '@tauri-apps/api/fs'
 import { createEffect, createResource, createSignal } from 'solid-js'
 import FileItem from './components/FileItem'
 
